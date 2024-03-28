@@ -80,11 +80,11 @@ namespace ChestFeatureSet.Framework.CFSChest
         /// <param name="e"></param>
         private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
         {
-            if (!Context.IsWorldReady) return;
+            if (!Context.IsWorldReady)
+                return;
+
             if (e.Button == SButton.MouseLeft)
-            {
                 this.HandleClick(e.Cursor);
-            }
         }
 
         /// <summary>
@@ -95,9 +95,6 @@ namespace ChestFeatureSet.Framework.CFSChest
         {
             var clickableMenu = Game1.activeClickableMenu;
             var itemGrabMenu = clickableMenu as ItemGrabMenu;
-
-            //if (itemGrabMenu?.behaviorOnItemGrab?.Target == null)
-            //    return null;
 
             if (itemGrabMenu?.behaviorOnItemGrab?.Target is Chest chest)
                 return chest;
@@ -123,13 +120,9 @@ namespace ChestFeatureSet.Framework.CFSChest
             Game1.playSound("smallSelect");
 
             if (this.Chests.Contains(chest))
-            {
                 this.Chests.Remove(chest);
-            }
             else
-            {
                 this.Chests.Add(chest);
-            }
         }
 
         /// <summary>
@@ -182,7 +175,7 @@ namespace ChestFeatureSet.Framework.CFSChest
         }
 
         /// <summary>
-        /// Clears the list of chests.
+        /// Clears the list of chests
         /// </summary>
         public void ClearChests()
         {
@@ -190,7 +183,7 @@ namespace ChestFeatureSet.Framework.CFSChest
         }
 
         /// <summary>
-        /// Update the OpenedChest.
+        /// Update the OpenedChest
         /// </summary>
         public void UpdateOpenedChest()
         {
@@ -198,11 +191,10 @@ namespace ChestFeatureSet.Framework.CFSChest
         }
 
         /// <summary>
-        /// Update the position of the button based on the settings in the config.
+        /// Update the position of the button based on the settings in the config
         /// </summary>
         private void UpdatePos()
         {
-            //Number values here are based on trial and error
             var menu = Game1.activeClickableMenu;
             if (menu == null)
                 return;

@@ -83,13 +83,10 @@ namespace ChestFeatureSet.CraftFromChests
             if (!Context.IsWorldReady)
                 return;
 
-            this.CFSChestController.UpdateOpenedChest();
-
             if (e.NewMenu == e.OldMenu || e.NewMenu == null)
                 return;
 
-            if (e.NewMenu.GetType().ToString() == "LoveOfCooking.Objects.CookingMenu")
-                return;
+            this.CFSChestController.UpdateOpenedChest();
 
             // If The Crafting (Cooking) page is opened
             if (e.NewMenu is CraftingPage)

@@ -58,8 +58,7 @@ namespace ChestFeatureSet.Framework
             // nothing remains -> remove item
             if (remainder == null)
             {
-                var index = sourceInventory.IndexOf(item);
-                sourceInventory[index] = null;
+                sourceInventory.Remove(item);
                 return true;
             }
 
@@ -79,6 +78,18 @@ namespace ChestFeatureSet.Framework
         /// <param name="chest">The chest to check.</param>
         public static bool HasEmptySlots(this Chest chest)
             => chest.Items.Count < Chest.capacity || chest.Items.Any(i => i == null);
+
+        /// <summary>
+        /// Gets all the chests in the world with all locations
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<ChestLocationPair> GetAllChests()
+        {
+            return from location in LocationExtension.GetAllLocations()
+                   from @object in location.objects.Values
+                   where @object is Chest
+                   select new ChestLocationPair((Chest)@object, location);
+        }
 
         /// <summary>
         /// Get the chests nearby farmer
@@ -133,18 +144,6 @@ namespace ChestFeatureSet.Framework
 
         private static bool InRadius(int radius, Vector2 a, Vector2 b) => Math.Abs(a.X - b.X) < radius && Math.Abs(a.Y - b.Y) < radius;
         private static bool InRadius(int radius, Vector2 a, int x, int y) => Math.Abs(a.X - x) < radius && Math.Abs(a.Y - y) < radius;
-
-        /// <summary>
-        /// Gets all the chests in the world with all locations
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<ChestLocationPair> GetAllChests()
-        {
-            return from location in LocationExtension.GetAllLocations()
-                   from @object in location.objects.Values
-                   where @object is Chest
-                   select new ChestLocationPair((Chest)@object, location);
-        }
     }
 
     /// <summary>

@@ -39,16 +39,12 @@ namespace ChestFeatureSet.Framework.CFSItem
         /// Gets the item that is currently hovered or null if no item is hovered.
         /// </summary>
         /// <returns>The item that is hovered or null</returns>
-        private Item GetHoveredItem()
+        public Item GetHoveredItem()
         {
             if (Game1.activeClickableMenu is GameMenu menu && menu.GetCurrentPage() is InventoryPage inventoryPage)
-            {
                 return inventoryPage.hoveredItem;
-            }
             else if (Game1.activeClickableMenu is ItemGrabMenu itemGrabMenu)
-            {
                 return itemGrabMenu.hoveredItem;
-            }
 
             return null;
         }
@@ -65,13 +61,9 @@ namespace ChestFeatureSet.Framework.CFSItem
                 return;
 
             if (this.Items.Contains(this.HoveredItem))
-            {
                 this.Items.Remove(this.HoveredItem);
-            }
             else
-            {
                 this.Items.Add(this.HoveredItem);
-            }
         }
 
         /// <summary>
