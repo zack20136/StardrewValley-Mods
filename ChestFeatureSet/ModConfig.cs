@@ -7,7 +7,7 @@ namespace ChestFeatureSet
         // StashToChests
         public bool StashToChests { get; set; } = true;
         public bool OnlyStashToExistingStacks { get; set; } = false;
-        public string StashLocationSetting { get; set; } = "Default"; // Default, Anywhere, AllFramBuilding
+        public string StashLocationSetting { get; set; } = "Default";
         public int StashRadius { get; set; } = 32;
         public SButton StashKey { get; set; } = SButton.B;
 
@@ -18,15 +18,14 @@ namespace ChestFeatureSet
 
         // CraftFromChests
         public bool CraftFromChests { get; set; } = true;
-        public string CraftLocationSetting { get; set; } = "Default"; // Default, Anywhere, AllFramBuilding
+        public string CraftLocationSetting { get; set; } = "Default";
         public int CraftRadius { get; set; } = -1;
         public SButton OpenCraftingPageKey { get; set; } = SButton.K;
 
-        // PickUpChests
+        // MoveChests
         public bool MoveChests { get; set; } = true;
         public SButton MoveChestKey { get; set; } = SButton.LeftShift;
 
         // Variable
-        public string[] FarmArea { get; set; } = new string[] { "Farm", "FarmHouse", "Cellar", "FarmCave", "GreenHouse", "Barn", "Coop", "SlimeHutch", "AnimalHouse" };
     }
 }

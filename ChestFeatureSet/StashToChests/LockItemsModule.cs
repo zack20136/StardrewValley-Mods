@@ -142,6 +142,7 @@ namespace ChestFeatureSet.StashToChests
                 e.SpriteBatch.Draw(this.LockIcon, pos, this.LockIconRectangle, Color.White);
             }
 
+            // Let MouseCursor above LockIcon.
             Game1.spriteBatch.Draw(Game1.mouseCursors, new Vector2(Game1.getOldMouseX(), Game1.getOldMouseY()),
                 Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 0, 16, 16), Color.White, 0f, Vector2.Zero,
                 4f + Game1.dialogueButtonScale / 150f, SpriteEffects.None, 0f);

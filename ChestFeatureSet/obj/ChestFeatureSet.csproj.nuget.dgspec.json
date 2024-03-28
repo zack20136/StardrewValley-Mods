@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zackl\\OneDrive\\桌面\\ChestFeatureSetDev\\ChestFeatureSet\\ChestFeatureSet.csproj": {}
+    "C:\\Users\\zackl\\OneDrive\\桌面\\StardrewValley Mod Dev\\ChestFeatureSet\\ChestFeatureSet\\ChestFeatureSet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zackl\\OneDrive\\桌面\\ChestFeatureSetDev\\ChestFeatureSet\\ChestFeatureSet.csproj": {
+    "C:\\Users\\zackl\\OneDrive\\桌面\\StardrewValley Mod Dev\\ChestFeatureSet\\ChestFeatureSet\\ChestFeatureSet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zackl\\OneDrive\\桌面\\ChestFeatureSetDev\\ChestFeatureSet\\ChestFeatureSet.csproj",
+        "projectUniqueName": "C:\\Users\\zackl\\OneDrive\\桌面\\StardrewValley Mod Dev\\ChestFeatureSet\\ChestFeatureSet\\ChestFeatureSet.csproj",
         "projectName": "ChestFeatureSet",
-        "projectPath": "C:\\Users\\zackl\\OneDrive\\桌面\\ChestFeatureSetDev\\ChestFeatureSet\\ChestFeatureSet.csproj",
+        "projectPath": "C:\\Users\\zackl\\OneDrive\\桌面\\StardrewValley Mod Dev\\ChestFeatureSet\\ChestFeatureSet\\ChestFeatureSet.csproj",
         "packagesPath": "C:\\Users\\zackl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zackl\\OneDrive\\桌面\\ChestFeatureSetDev\\ChestFeatureSet\\obj\\",
+        "outputPath": "C:\\Users\\zackl\\OneDrive\\桌面\\StardrewValley Mod Dev\\ChestFeatureSet\\ChestFeatureSet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zackl\\AppData\\Roaming\\NuGet\\NuGet.Config",

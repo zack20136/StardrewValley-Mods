@@ -7,7 +7,7 @@ using StardewValley.Objects;
 
 namespace ChestFeatureSet.Framework
 {
-    internal static class ChestExtension
+    public static class ChestExtension
     {
         /// <summary>
         /// Search ContainsItem By ID
@@ -87,7 +87,7 @@ namespace ChestFeatureSet.Framework
             => GetNearbyChests(farmer.currentLocation, farmer.TilePoint.ToVector2(), radius);
 
         /// <summary>
-        /// Get the chests nearby point
+        /// Get the chests nearby the point
         /// </summary>
         public static IEnumerable<Chest> GetNearbyChests(GameLocation location, Vector2 point, int radius)
         {
@@ -135,35 +135,20 @@ namespace ChestFeatureSet.Framework
         private static bool InRadius(int radius, Vector2 a, int x, int y) => Math.Abs(a.X - x) < radius && Math.Abs(a.Y - y) < radius;
 
         /// <summary>
-        /// Gets all the chests in the world with locations
+        /// Gets all the chests in the world with all locations
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<ChestLocationPair> GetAllChests()
         {
-            return new List<ChestLocationPair>().Concat(from location in GetBuildableLocations()
-                                                        from @object in location.objects.Values
-                                                        where @object is Chest
-                                                        select new ChestLocationPair((Chest)@object, location));
-        }
-
-        /// <summary>
-        /// Get all game's buildable locations
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<GameLocation> GetBuildableLocations()
-        {
-            return Game1.locations.Concat(
-                from location in Game1.locations
-                where location.IsBuildableLocation()
-                from building in location.buildings
-                where building.indoors.Value != null
-                select building.indoors.Value
-            );
+            return from location in LocationExtension.GetAllLocations()
+                   from @object in location.objects.Values
+                   where @object is Chest
+                   select new ChestLocationPair((Chest)@object, location);
         }
     }
 
     /// <summary>
-    /// Pair of chest and their locations
+    /// Pair of chest and their location
     /// </summary>
     public class ChestLocationPair
     {

@@ -84,17 +84,10 @@ namespace ChestFeatureSet.StashToChests
         {
             var movedAtLeastOne = false;
 
-            foreach (var loc in ChestExtension.GetBuildableLocations())
-            {
-                this.Monitor.Log(loc.isFarmBuildingInterior().ToString(), LogLevel.Info);
-            }
-            //isFarmBuildingInterior
-            // (name.Contains("Farm") || name.Contains("Coop") || name.Contains("Barn") || name.Equals("SlimeHutch"))
-
             IEnumerable<Chest>? chests = null;
             if (this.Config.StashLocationSetting is "Anywhere")
                 chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest);
-            else if (this.Config.StashLocationSetting is "AllFramBuilding" && this.Config.FarmArea.Contains(Game1.player.currentLocation.Name))
+            else if (this.Config.StashLocationSetting is "FarmArea" && LocationExtension.FarmArea.Contains(Game1.player.currentLocation.Name))
                 chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest);
             else
                 chests = Game1.player.GetNearbyChests(radius);

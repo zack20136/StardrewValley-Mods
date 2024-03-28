@@ -142,7 +142,7 @@ namespace ChestFeatureSet.CraftFromChests
                 IEnumerable<Chest>? chests = null;
                 if (this.Config.CraftLocationSetting is "Anywhere")
                     chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest).Where(chest => !this.CFSChestController.GetChests().Contains(chest));
-                else if (this.Config.CraftLocationSetting is "AllFramBuilding" && this.Config.FarmArea.Contains(Game1.player.currentLocation.Name))
+                else if (this.Config.CraftLocationSetting is "FarmArea" && LocationExtension.FarmArea.Contains(Game1.player.currentLocation.Name))
                     chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest).Where(chest => !this.CFSChestController.GetChests().Contains(chest));
                 else
                     chests = ChestExtension.GetNearbyChests(Game1.player, this.Config.CraftRadius).Where(chest => !this.CFSChestController.GetChests().Contains(chest));

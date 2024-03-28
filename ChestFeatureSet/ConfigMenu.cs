@@ -41,15 +41,15 @@ namespace ChestFeatureSet
             configMenu.AddTextOption(
                 mod: manifest,
                 name: () => "StashLocationSetting",
-                tooltip: () => "Can stash to chests at these {lcations}.\n Default: only the location you are.\n AllFramBuilding: all the location inside the farm(include).\n Anywhere: all the world's location.",
+                tooltip: () => "Can stash to chests at these {lcations}.\n Default: The location you are.\n FarmArea: All the location inside the farm(include).\n Anywhere: All the location.",
                 getValue: () => config.StashLocationSetting,
                 setValue: value => config.StashLocationSetting = value,
-                allowedValues: new string[] { "Default", "AllFramBuilding", "Anywhere" }
+                allowedValues: new string[] { "Default", "FarmArea", "Anywhere" }
             );
             configMenu.AddNumberOption(
                 mod: manifest,
                 name: () => "StashRadius (-1 is Unlimited)",
-                tooltip: () => "The distance can be stashed to chests.",
+                tooltip: () => "The distance that can be stashed to chests.\nActive when LocationSetting is Default.",
                 getValue: () => config.StashRadius,
                 setValue: value => config.StashRadius = value
             );
@@ -103,15 +103,15 @@ namespace ChestFeatureSet
             configMenu.AddTextOption(
                 mod: manifest,
                 name: () => "CraftLocationSetting",
-                tooltip: () => "Can stash to chests at these {lcations}.\n Default: only the location you are.\n AllFramBuilding: all the location inside the farm(include).\n Anywhere: all the world's location.",
+                tooltip: () => "Can craft from chests at these {lcations}.\n Default: The location you are.\n FarmArea: All the location inside the farm(include).\n Anywhere: All the location.",
                 getValue: () => config.CraftLocationSetting,
                 setValue: value => config.CraftLocationSetting = value,
-                allowedValues: new string[] { "Default", "AllFramBuilding", "Anywhere" }
+                allowedValues: new string[] { "Default", "FarmArea", "Anywhere" }
             );
             configMenu.AddNumberOption(
                 mod: manifest,
                 name: () => "CraftRadius (-1 is Unlimited)",
-                tooltip: () => "The distance can be crafted to chests.",
+                tooltip: () => "The distance that can be crafted from chests.\nActive when LocationSetting is Default.",
                 getValue: () => config.CraftRadius,
                 setValue: value => config.CraftRadius = value
             );
@@ -123,7 +123,7 @@ namespace ChestFeatureSet
                 setValue: value => config.OpenCraftingPageKey = value
             );
 
-            // PickUpChests
+            // MoveChests
             configMenu.AddSectionTitle(
                 mod: manifest,
                 text: () => "MoveChests"
@@ -137,8 +137,8 @@ namespace ChestFeatureSet
             );
             configMenu.AddKeybind(
                 mod: manifest,
-                name: () => "PickUpChestKey",
-                tooltip: () => "PickUpChestKey Keybind.",
+                name: () => "MoveChestKey",
+                tooltip: () => "MoveChestKey Keybind.",
                 getValue: () => config.MoveChestKey,
                 setValue: value => config.MoveChestKey = value
             );
