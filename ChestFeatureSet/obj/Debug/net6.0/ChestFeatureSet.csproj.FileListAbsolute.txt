@@ -1,0 +1,16 @@
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.csproj.AssemblyReference.cache
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.AssemblyInfoInputs.cache
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.AssemblyInfo.cs
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.csproj.CoreCompileInputs.cache
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\bin\Debug\net6.0\ChestFeatureSet.deps.json
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\bin\Debug\net6.0\ChestFeatureSet.dll
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSet\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.dll
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\bin\Debug\net6.0\ChestFeatureSet.deps.json
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\bin\Debug\net6.0\ChestFeatureSet.dll
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.csproj.AssemblyReference.cache
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.AssemblyInfoInputs.cache
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.AssemblyInfo.cs
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.csproj.CoreCompileInputs.cache
+C:\Users\zackl\OneDrive\桌面\ChestFeatureSetDev\ChestFeatureSet\obj\Debug\net6.0\ChestFeatureSet.dll

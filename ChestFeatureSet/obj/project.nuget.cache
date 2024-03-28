@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DxIXvlmokhtUz0HyDRKS3hAQvEsbN7+o+ezNcgkeTcHmRnJ2TIhZ3K1TZUjpTJEjtKATZTYvcspnN5GwdkTBxA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zackl\\OneDrive\\桌面\\ChestFeatureSetDev\\ChestFeatureSet\\ChestFeatureSet.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zackl\\.nuget\\packages\\pathoschild.stardew.modbuildconfig\\4.1.1\\pathoschild.stardew.modbuildconfig.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
