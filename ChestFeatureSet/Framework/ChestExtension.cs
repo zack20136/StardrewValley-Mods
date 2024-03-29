@@ -10,7 +10,7 @@ namespace ChestFeatureSet.Framework
     public static class ChestExtension
     {
         /// <summary>
-        /// Search ContainsItem By ID
+        /// Search ContainsItem By ItemId
         /// </summary>
         /// <param name="chest"></param>
         /// <param name="i"></param>
@@ -33,13 +33,7 @@ namespace ChestFeatureSet.Framework
         /// <param name="items">Items to put in</param>
         /// <returns>List of Items that were successfully moved into the chest</returns>
         public static IEnumerable<Item> DumpItemsToChest(this Chest chest, IList<Item> sourceInventory, IEnumerable<Item> items)
-        {
-            var changedItems = items.Where(item => item != null)
-                                    .Where(item => TryMoveItemToChest(chest, sourceInventory, item))
-                                    .ToList();
-
-            return changedItems;
-        }
+            => items.Where(item => item != null).Where(item => TryMoveItemToChest(chest, sourceInventory, item)).ToList();
 
         /// <summary>
         /// Attempt to move as much as possible of the given item stack into the chest.
@@ -58,7 +52,7 @@ namespace ChestFeatureSet.Framework
             // nothing remains -> remove item
             if (remainder == null)
             {
-                sourceInventory.Remove(item);
+                sourceInventory[sourceInventory.IndexOf(item)] = null;
                 return true;
             }
 
@@ -84,12 +78,17 @@ namespace ChestFeatureSet.Framework
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<ChestLocationPair> GetAllChests()
-        {
-            return from location in LocationExtension.GetAllLocations()
-                   from @object in location.objects.Values
-                   where @object is Chest
-                   select new ChestLocationPair((Chest)@object, location);
-        }
+            => from location in LocationExtension.GetAllLocations()
+               from @object in location.objects.Values
+               where @object is Chest
+               select new ChestLocationPair((Chest)@object, location);
+
+        /// <summary>
+        /// Gets all the chests in the area with all locations
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<ChestLocationPair> GetAreaChests(string[] area)
+            => GetAllChests().Where(chestPair => area.Contains(chestPair.Location.Name));
 
         /// <summary>
         /// Get the chests nearby farmer
@@ -137,10 +136,8 @@ namespace ChestFeatureSet.Framework
         /// <summary>
         /// Get the objects nearby point
         /// </summary>
-        public static IEnumerable<T> GetNearbyObjects<T>(GameLocation location, Vector2 point, int radius) where T : StardewValley.Object =>
-            location.Objects.Pairs
-                    .Where(p => p.Value is T && (InRadius(radius, point, p.Key) || radius == -1))
-                    .Select(p => (T)p.Value);
+        public static IEnumerable<T> GetNearbyObjects<T>(GameLocation location, Vector2 point, int radius) where T : StardewValley.Object
+            => location.Objects.Pairs.Where(p => p.Value is T && (InRadius(radius, point, p.Key) || radius == -1)).Select(p => (T)p.Value);
 
         private static bool InRadius(int radius, Vector2 a, Vector2 b) => Math.Abs(a.X - b.X) < radius && Math.Abs(a.Y - b.Y) < radius;
         private static bool InRadius(int radius, Vector2 a, int x, int y) => Math.Abs(a.X - x) < radius && Math.Abs(a.Y - y) < radius;

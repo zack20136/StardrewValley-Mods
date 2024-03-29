@@ -175,11 +175,21 @@ namespace ChestFeatureSet.Framework.CFSChest
         }
 
         /// <summary>
-        /// Clears the list of chests
+        /// Remove chest from list
         /// </summary>
-        public void ClearChests()
+        public void AddChest(Chest chest)
         {
-            this.Chests.Clear();
+            if (chest != null)
+                this.Chests.Add(chest);
+        }
+
+        /// <summary>
+        /// Remove chest from list
+        /// </summary>
+        public void RemoveChest(Chest chest)
+        {
+            if (chest != null)
+                this.Chests.Remove(chest);
         }
 
         /// <summary>

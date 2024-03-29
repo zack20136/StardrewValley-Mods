@@ -16,7 +16,7 @@ namespace ChestFeatureSet.StashToChests
 
         public delegate bool AcceptingFunction(Chest c, Item i);
 
-        private CFSChestController CFSChestController { get; set; }
+        public CFSChestController CFSChestController { get; private set; }
 
         public override void Activate()
         {
@@ -84,11 +84,13 @@ namespace ChestFeatureSet.StashToChests
         {
             var movedAtLeastOne = false;
 
+            //Monitor.Log(Game1.player.currentLocation.parentLocationName, LogLevel.Info);
+
             IEnumerable<Chest>? chests = null;
             if (this.Config.StashLocationSetting is "Anywhere")
                 chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest);
             else if (this.Config.StashLocationSetting is "FarmArea" && LocationExtension.FarmArea.Contains(Game1.player.currentLocation.Name))
-                chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest);
+                chests = ChestExtension.GetAreaChests(LocationExtension.FarmArea).Select(chestPair => chestPair.Chest);
             else
                 chests = Game1.player.GetNearbyChests(radius);
 

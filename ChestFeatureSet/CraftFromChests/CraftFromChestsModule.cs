@@ -14,7 +14,7 @@ namespace ChestFeatureSet.CraftFromChests
     {
         public CraftFromChestsModule(ModEntry modEntry) : base(modEntry) { }
 
-        private CFSChestController CFSChestController { get; set; }
+        public CFSChestController CFSChestController { get; private set; }
 
         private bool IsCraftingTab { get; set; }
 
@@ -117,7 +117,7 @@ namespace ChestFeatureSet.CraftFromChests
         /// <summary>
         /// Inject the items on the page.
         /// </summary>
-        public void InjectItems()
+        private void InjectItems()
         {
             var page = Game1.activeClickableMenu;
 
@@ -140,7 +140,7 @@ namespace ChestFeatureSet.CraftFromChests
                 if (this.Config.CraftLocationSetting is "Anywhere")
                     chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest).Where(chest => !this.CFSChestController.GetChests().Contains(chest));
                 else if (this.Config.CraftLocationSetting is "FarmArea" && LocationExtension.FarmArea.Contains(Game1.player.currentLocation.Name))
-                    chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest).Where(chest => !this.CFSChestController.GetChests().Contains(chest));
+                    chests = ChestExtension.GetAreaChests(LocationExtension.FarmArea).Select(chestPair => chestPair.Chest).Where(chest => !this.CFSChestController.GetChests().Contains(chest));
                 else
                     chests = ChestExtension.GetNearbyChests(Game1.player, this.Config.CraftRadius).Where(chest => !this.CFSChestController.GetChests().Contains(chest));
 

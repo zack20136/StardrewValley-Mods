@@ -81,7 +81,7 @@ namespace ChestFeatureSet.Framework.CFSItem
         /// <param name="items"></param>
         public void SetItems(IEnumerable<Item> items)
         {
-            this.Items.Clear();
+            this.ClearItems();
             foreach (var item in items)
             {
                 this.Items.Add(item);
@@ -89,13 +89,23 @@ namespace ChestFeatureSet.Framework.CFSItem
         }
 
         /// <summary>
-        /// Remove the item
+        /// Remove the item.
         /// </summary>
         /// <param name="item"></param>
         public void RemoveItem(Item item)
         {
             if (item != null)
                 this.Items.Remove(item);
+        }
+
+        /// <summary>
+        /// Add the item.
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddItem(Item item)
+        {
+            if (item != null)
+                this.Items.Add(item);
         }
 
         /// <summary>

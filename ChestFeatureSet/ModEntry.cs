@@ -1,4 +1,5 @@
 ﻿using ChestFeatureSet.CraftFromChests;
+using ChestFeatureSet.MoveChests;
 using ChestFeatureSet.StashToChests;
 using StardewModdingAPI;
 
@@ -8,9 +9,10 @@ namespace ChestFeatureSet
     {
         public ModConfig Config { get; private set; }
 
-        internal static StashToChestsModule? StashToChests { get; private set; }
+        internal StashToChestsModule? StashToChests { get; private set; }
         internal LockItemsModule? LockItems { get; private set; }
-        internal static CraftFromChestsModule? CraftFromChests { get; private set; }
+        internal CraftFromChestsModule? CraftFromChests { get; private set; }
+        internal MoveChestsModule? MoveChests { get; private set; }
 
         /// <summary>The mod entry point, called after the mod is first loaded.</summary>
         /// <param name="helper">Provides simplified APIs for writing mods.</param>
@@ -45,6 +47,11 @@ namespace ChestFeatureSet
                 CraftFromChests = new CraftFromChestsModule(this);
                 CraftFromChests.Activate();
             }
+            if (Config.MoveChests)
+            {
+                MoveChests = new MoveChestsModule(this);
+                MoveChests.Activate();
+            }
         }
 
         private void UnloadModules()
@@ -63,6 +70,11 @@ namespace ChestFeatureSet
             {
                 CraftFromChests.Deactivate();
                 CraftFromChests = null;
+            }
+            if (MoveChests != null)
+            {
+                MoveChests.Deactivate();
+                MoveChests = null;
             }
         }
     }

@@ -22,7 +22,8 @@ namespace ChestFeatureSet
             // StashToChests
             configMenu.AddSectionTitle(
                 mod: manifest,
-                text: () => "StashToChests"
+                text: () => "StashToChests",
+                tooltip: () => "Stash to the chests that is been selected."
                 );
             configMenu.AddBoolOption(
                 mod: manifest,
@@ -64,7 +65,8 @@ namespace ChestFeatureSet
             // LockItems
             configMenu.AddSectionTitle(
                 mod: manifest,
-                text: () => "LockItems"
+                text: () => "LockItems",
+                tooltip: () => "Locked the items that do not want to stash."
                 );
             configMenu.AddBoolOption(
                 mod: manifest,
@@ -91,7 +93,8 @@ namespace ChestFeatureSet
             // CraftFromChests
             configMenu.AddSectionTitle(
                 mod: manifest,
-                text: () => "CraftFromChests"
+                text: () => "CraftFromChests",
+                tooltip: () => "Crafting form the chests that is been select."
                 );
             configMenu.AddBoolOption(
                 mod: manifest,
@@ -126,7 +129,8 @@ namespace ChestFeatureSet
             // MoveChests
             configMenu.AddSectionTitle(
                 mod: manifest,
-                text: () => "MoveChests"
+                text: () => "MoveChests",
+                tooltip: () => "Move the chest with item inside."
                 );
             configMenu.AddBoolOption(
                 mod: manifest,
