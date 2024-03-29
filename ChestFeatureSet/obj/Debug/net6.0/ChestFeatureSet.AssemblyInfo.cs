@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChestFeatureSet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b111f31f9316804bafbb55d29f3d45ff0dbadb17")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f56796b309c8d09ce4eb1473a025c7604a82406b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChestFeatureSet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChestFeatureSet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

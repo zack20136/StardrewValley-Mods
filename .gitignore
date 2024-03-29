@@ -1,4 +1,7 @@
-.git
-.vs
+.git/
+.vs/
+
+ChestFeatureSet/bin/
+ChestFeatureSet/obj/
 
 manifest.json
