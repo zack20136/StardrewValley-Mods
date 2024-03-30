@@ -24,6 +24,7 @@ namespace ChestFeatureSet
 
         // MoveChests
         public bool MoveChests { get; set; } = true;
+        public bool MoveChestsDebuff { get; set; } = true;
         public SButton MoveChestKey { get; set; } = SButton.LeftShift;
 
         // Variable

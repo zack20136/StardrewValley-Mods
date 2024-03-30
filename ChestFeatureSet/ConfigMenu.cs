@@ -139,6 +139,13 @@ namespace ChestFeatureSet
                 getValue: () => config.MoveChests,
                 setValue: value => config.MoveChests = value
             );
+            configMenu.AddBoolOption(
+                mod: manifest,
+                name: () => "MoveChestsDebuff",
+                tooltip: () => "While moving chest get a debuff.",
+                getValue: () => config.MoveChestsDebuff,
+                setValue: value => config.MoveChestsDebuff = value
+            );
             configMenu.AddKeybind(
                 mod: manifest,
                 name: () => "MoveChestKey",

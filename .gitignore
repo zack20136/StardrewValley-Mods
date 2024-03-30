@@ -2,6 +2,9 @@
 .vs/
 
 ChestFeatureSet/bin/
+ChestFeatureSet/bin/*
+
 ChestFeatureSet/obj/
+ChestFeatureSet/obj/*
 
 manifest.json

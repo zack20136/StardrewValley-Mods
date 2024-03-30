@@ -1,7 +1,9 @@
 ﻿using ChestFeatureSet.Framework;
+using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Buffs;
 using StardewValley.Objects;
 
 namespace ChestFeatureSet.MoveChests
@@ -11,36 +13,67 @@ namespace ChestFeatureSet.MoveChests
         public MoveChestsModule(ModEntry modEntry) : base(modEntry) { }
 
         private readonly string TempChestName = "*6uQmx.a@!H=wDrF@=+=9pf=dRyaa.R5";
-        private Chest HeldChest { get; set; }
+        private readonly Buff MoveChestsDebuff = new Buff("MoveChestsDebuff", duration: Buff.ENDLESS, effects: new BuffEffects { Speed = { -2 } }, isDebuff: true);
+        private Chest? HeldChest { get; set; }
 
         public override void Activate()
         {
             this.IsActive = true;
 
-            this.Events.Input.ButtonPressed += OnButtonPressed;
-            this.Events.Input.ButtonReleased += OnButtonReleased;
+            this.Events.GameLoop.DayEnding += this.OnDayEnding;
+
+            this.Events.Input.ButtonPressed += this.OnButtonPressed;
+            this.Events.Input.ButtonReleased += this.OnButtonReleased;
         }
 
         public override void Deactivate()
         {
             this.IsActive = false;
 
-            this.Events.Input.ButtonPressed -= OnButtonPressed;
-            this.Events.Input.ButtonReleased -= OnButtonReleased;
+            this.Events.GameLoop.DayEnding -= this.OnDayEnding;
+
+            this.Events.Input.ButtonPressed -= this.OnButtonPressed;
+            this.Events.Input.ButtonReleased -= this.OnButtonReleased;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void OnDayEnding(object sender, DayEndingEventArgs e)
+        {
+            if (this.HeldChest != null)
+            {
+                var playerLocation = Game1.player.currentLocation;
+                int playerTileX = (int)Game1.player.Tile.X;
+                int playerTileY = (int)Game1.player.Tile.Y;
+
+                foreach (var i in new List<int> { 0, 1, -1, 2, -2, 3, -3 })
+                {
+                    if (playerLocation.IsTileBlockedBy(new Vector2(playerTileX + i, playerTileY + 1))
+                        || playerLocation.IsTileBlockedBy(new Vector2(playerTileX + i, playerTileY))
+                        || !playerLocation.isTileOnMap(new Vector2(playerTileX + i, playerTileY)))
+                        continue;
+
+                    playerLocation.setObjectAt(playerTileX + i, playerTileY, this.HeldChest);
+                    break;
+                }
+
+                foreach (var item in Game1.player.Items)
+                {
+                    if (item.Name != this.TempChestName)
+                        continue;
+
+                    Game1.player.Items.Remove(item);
+                    this.HeldChest = null;
+                    break;
+                }
+            }
+        }
+
         private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             if (!Context.IsPlayerFree)
                 return;
 
             if (e.Button == Config.MoveChestKey)
-                this.Events.Input.ButtonPressed += OnMouseClicked;
+                this.Events.Input.ButtonPressed += this.OnMouseClicked;
         }
 
         private void OnButtonReleased(object sender, ButtonReleasedEventArgs e)
@@ -49,7 +82,7 @@ namespace ChestFeatureSet.MoveChests
                 return;
 
             if (e.Button == Config.MoveChestKey)
-                this.Events.Input.ButtonPressed -= OnMouseClicked;
+                this.Events.Input.ButtonPressed -= this.OnMouseClicked;
         }
 
         private void OnMouseClicked(object sender, ButtonPressedEventArgs e)
@@ -95,6 +128,9 @@ namespace ChestFeatureSet.MoveChests
                             this.HeldChest.Location.objects.Remove(this.HeldChest.TileLocation);
 
                             this.Events.World.ObjectListChanged += this.OnObjectListChanged;
+
+                            if (this.Config.MoveChestsDebuff)
+                                Game1.player.applyBuff(this.MoveChestsDebuff);
                             return;
                         }
                     }
@@ -114,6 +150,9 @@ namespace ChestFeatureSet.MoveChests
 
                 this.HeldChest = null;
                 this.Events.World.ObjectListChanged -= this.OnObjectListChanged;
+
+                if (this.Config.MoveChestsDebuff)
+                    Game1.player.ClearBuffs();
             }
         }
 
