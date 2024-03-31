@@ -80,10 +80,7 @@ namespace ChestFeatureSet.CraftFromChests
         /// <param name="e"></param>
         private void OnMenuChanged(object sender, MenuChangedEventArgs e)
         {
-            if (!Context.IsWorldReady)
-                return;
-
-            if (e.NewMenu == e.OldMenu || e.NewMenu == null)
+            if (!Context.IsWorldReady || e.NewMenu == e.OldMenu || e.NewMenu == null)
                 return;
 
             this.CFSChestController.UpdateOpenedChest();

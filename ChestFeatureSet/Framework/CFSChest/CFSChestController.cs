@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Locations;
 using StardewValley.Menus;
 using StardewValley.Objects;
+using static StardewValley.Objects.Chest;
 
 namespace ChestFeatureSet.Framework.CFSChest
 {
@@ -70,7 +70,7 @@ namespace ChestFeatureSet.Framework.CFSChest
             if (!Context.IsWorldReady)
                 return;
 
-            this.DrawIcon(e);
+            this.DrawIcon(e.SpriteBatch);
         }
 
         /// <summary>
@@ -129,22 +129,25 @@ namespace ChestFeatureSet.Framework.CFSChest
         /// Draw the icon.
         /// </summary>
         /// <param name="e"></param>
-        public void DrawIcon(RenderedActiveMenuEventArgs e)
+        public void DrawIcon(SpriteBatch SpriteBatch)
         {
             var openChest = this.OpenedChest;
-            if (openChest == null)
+            if (openChest == null || Game1.activeClickableMenu == null || !openChest.playerChest.Value)
                 return;
 
-            var farmHouse = Game1.getLocationFromName("farmHouse") as FarmHouse;
-            if (openChest == farmHouse?.fridge.Value || Game1.activeClickableMenu == null || !openChest.playerChest.Value)
+            if (openChest == Game1.getLocationFromName("farmHouse").GetFridge())
                 return;
 
-            this.UpdatePos();
+            var openChestSpecialChestType = openChest.SpecialChestType;
+            if (!(openChestSpecialChestType == SpecialChestTypes.None || openChestSpecialChestType == SpecialChestTypes.BigChest))
+                return;
+
+            this.UpdatePos(this.PosNum, openChestSpecialChestType);
 
             if (this.Chests.Contains(openChest))
-                this.SelectedComponent.draw(e.SpriteBatch, Color.White, 0f);
+                this.SelectedComponent.draw(SpriteBatch, Color.White, 0f);
             else
-                this.DeselectedComponent.draw(e.SpriteBatch, Color.White, 0f);
+                this.DeselectedComponent.draw(SpriteBatch, Color.White, 0f);
 
             // Let MouseCursor above LockIcon.
             Game1.spriteBatch.Draw(Game1.mouseCursors, new Vector2(Game1.getOldMouseX(), Game1.getOldMouseY()),
@@ -203,18 +206,24 @@ namespace ChestFeatureSet.Framework.CFSChest
         /// <summary>
         /// Update the position of the button based on the settings in the config
         /// </summary>
-        private void UpdatePos()
+        private void UpdatePos(int PosNum, SpecialChestTypes SpecialChestType)
         {
             var menu = Game1.activeClickableMenu;
             if (menu == null)
                 return;
 
             var xOffset = 0.0;
-            var yOffset = 0.925;
-            switch (this.PosNum)
+            var yOffset = 0.0;
+
+            if (SpecialChestType == SpecialChestTypes.BigChest)
+                xOffset = -1.0;
+
+            switch (PosNum)
             {
+                case 1:
+                    yOffset = 0.925;
+                    break;
                 case 2:
-                    xOffset = 0.0;
                     yOffset = 2.1;
                     break;
                 case 3:

@@ -4,9 +4,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Buffs;
-using StardewValley.Mods;
 using StardewValley.Objects;
-using System.Collections.Generic;
 
 namespace ChestFeatureSet.MoveChests
 {
@@ -121,15 +119,20 @@ namespace ChestFeatureSet.MoveChests
                             if (Game1.player.Items[i] != null)
                                 continue;
 
-                            this.HeldChest.Location.objects.Remove(this.HeldChest.TileLocation);
-
                             if (this.HeldChest.SpecialChestType is Chest.SpecialChestTypes.None)
                                 Game1.player.addItemToInventory(new Chest(true), i);
                             else if (this.HeldChest.SpecialChestType is Chest.SpecialChestTypes.BigChest)
                                 Game1.player.addItemToInventory(new Chest(true, "BigChest"), i);
+                            else
+                            {
+                                this.HeldChest = null;
+                                return;
+                            }
 
                             Game1.player.Items[i].Name = this.TempChestName;
                             Game1.player.Items[i].Quality = 4;
+
+                            this.HeldChest.Location.objects.Remove(this.HeldChest.TileLocation);
 
                             // LockItems
                             this.ModEntry.LockItems?.CFSItemController.AddItem(Game1.player.Items[i]);
@@ -151,8 +154,6 @@ namespace ChestFeatureSet.MoveChests
                 return;
 
             var chest = e.Added.Select(p => p.Value).OfType<Chest>().LastOrDefault();
-
-            Monitor.Log(chest?.ItemId.ToString() + " " + chest?.Name.ToString(), LogLevel.Info);
 
             // can not get bigChest name corrected. So skip now, later fix.
             if (chest != null && (chest.Name == this.TempChestName || chest.ItemId == "BigChest"))
