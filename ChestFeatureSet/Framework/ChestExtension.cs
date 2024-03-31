@@ -44,9 +44,6 @@ namespace ChestFeatureSet.Framework
         /// <returns>True if at least some of the stack was moved into the chest.</returns>
         public static bool TryMoveItemToChest(this Chest chest, IList<Item> sourceInventory, Item item)
         {
-            if (!chest.HasEmptySlots())
-                return false;
-
             var remainder = chest.addItem(item);
 
             // nothing remains -> remove item

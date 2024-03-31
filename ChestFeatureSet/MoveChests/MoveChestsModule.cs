@@ -4,7 +4,9 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Buffs;
+using StardewValley.Mods;
 using StardewValley.Objects;
+using System.Collections.Generic;
 
 namespace ChestFeatureSet.MoveChests
 {
@@ -119,13 +121,18 @@ namespace ChestFeatureSet.MoveChests
                             if (Game1.player.Items[i] != null)
                                 continue;
 
-                            Game1.player.addItemToInventory(new Chest(true), i);
+                            this.HeldChest.Location.objects.Remove(this.HeldChest.TileLocation);
+
+                            if (this.HeldChest.SpecialChestType is Chest.SpecialChestTypes.None)
+                                Game1.player.addItemToInventory(new Chest(true), i);
+                            else if (this.HeldChest.SpecialChestType is Chest.SpecialChestTypes.BigChest)
+                                Game1.player.addItemToInventory(new Chest(true, "BigChest"), i);
+
                             Game1.player.Items[i].Name = this.TempChestName;
+                            Game1.player.Items[i].Quality = 4;
 
                             // LockItems
                             this.ModEntry.LockItems?.CFSItemController.AddItem(Game1.player.Items[i]);
-
-                            this.HeldChest.Location.objects.Remove(this.HeldChest.TileLocation);
 
                             this.Events.World.ObjectListChanged += this.OnObjectListChanged;
 
@@ -144,7 +151,11 @@ namespace ChestFeatureSet.MoveChests
                 return;
 
             var chest = e.Added.Select(p => p.Value).OfType<Chest>().LastOrDefault();
-            if (chest != null && chest.Name == this.TempChestName)
+
+            Monitor.Log(chest?.ItemId.ToString() + " " + chest?.Name.ToString(), LogLevel.Info);
+
+            // can not get bigChest name corrected. So skip now, later fix.
+            if (chest != null && (chest.Name == this.TempChestName || chest.ItemId == "BigChest"))
             {
                 chest = this.CopyChestData(chest, this.HeldChest);
 
@@ -158,7 +169,6 @@ namespace ChestFeatureSet.MoveChests
 
         private Chest CopyChestData(Chest newChest, Chest CopyFrom)
         {
-            // Orginal Data
             newChest.Name = CopyFrom.Name;
             newChest.playerChoiceColor.Value = CopyFrom.playerChoiceColor.Value;
             newChest.heldObject.Value = CopyFrom.heldObject.Value;
