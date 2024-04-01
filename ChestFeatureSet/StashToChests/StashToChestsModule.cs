@@ -84,7 +84,7 @@ namespace ChestFeatureSet.StashToChests
         {
             var movedAtLeastOne = false;
 
-            //Monitor.Log(Game1.player.currentLocation.parentLocationName, LogLevel.Info);
+            //Monitor.Log(Game1.player.currentLocation.Name.ToString(), LogLevel.Info);
 
             IEnumerable<Chest>? chests = null;
             if (this.Config.StashLocationSetting is "Anywhere")
@@ -95,7 +95,10 @@ namespace ChestFeatureSet.StashToChests
                 chests = Game1.player.GetNearbyChests(radius);
 
             if (!chests.Any())
+            {
+                Game1.showRedMessage("No Chest Can Be Stashed.");
                 return;
+            }
 
             foreach (var chest in chests)
             {

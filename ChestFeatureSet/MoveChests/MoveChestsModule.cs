@@ -119,16 +119,13 @@ namespace ChestFeatureSet.MoveChests
                             if (Game1.player.Items[i] != null)
                                 continue;
 
-                            if (this.HeldChest.SpecialChestType is Chest.SpecialChestTypes.None)
-                                Game1.player.addItemToInventory(new Chest(true), i);
-                            else if (this.HeldChest.SpecialChestType is Chest.SpecialChestTypes.BigChest)
-                                Game1.player.addItemToInventory(new Chest(true, "BigChest"), i);
-                            else
+                            if (this.HeldChest.SpecialChestType is not Chest.SpecialChestTypes.None && this.HeldChest.SpecialChestType is not Chest.SpecialChestTypes.BigChest)
                             {
                                 this.HeldChest = null;
                                 return;
                             }
 
+                            Game1.player.addItemToInventory(new Chest(true, this.HeldChest.ItemId), i);
                             Game1.player.Items[i].Name = this.TempChestName;
                             Game1.player.Items[i].Quality = 4;
 

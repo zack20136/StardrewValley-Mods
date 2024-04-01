@@ -4,7 +4,7 @@ namespace ChestFeatureSet.Framework
 {
     public static class LocationExtension
     {
-        public static string[] FarmArea { get; } = new string[] { "Farm", "FarmHouse", "Cellar", "GreenHouse", "Coop", "Barn", "SlimeHutch", "Shed", "FarmCave" };
+        public static string[] FarmArea { get; } = new string[] { "Farm", "FarmHouse", "Cellar", "GreenHouse", "Coop", "Barn", "Slime Hutch", "Shed", "FarmCave" };
 
         /// <summary>
         /// Get all game's locations
