@@ -1,2 +1,1 @@
-# ChestFeatureSet
-Stardrew Valley Chest Feature Set
+# StardrewValley-Mods
