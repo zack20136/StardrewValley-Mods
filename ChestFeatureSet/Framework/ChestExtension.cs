@@ -10,12 +10,12 @@ namespace ChestFeatureSet.Framework
     public static class ChestExtension
     {
         /// <summary>
-        /// Search ContainsItem By ItemId
+        /// Search ContainsItem By ItemId & ItemType
         /// </summary>
         /// <param name="chest"></param>
         /// <param name="i"></param>
         /// <returns></returns>
-        public static bool ContainsItem(this Chest chest, Item i) => chest.Items.ContainsId(i.ItemId);
+        public static bool ContainsItem(this Chest chest, Item i) => chest.Items.Any(item => item.ItemId == i.itemId && item.TypeDefinitionId == i.TypeDefinitionId);
 
         /// <summary>
         /// Search ContainsItem By Existing Stacks
