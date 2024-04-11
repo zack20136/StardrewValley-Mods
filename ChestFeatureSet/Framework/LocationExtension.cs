@@ -4,9 +4,27 @@ namespace ChestFeatureSet.Framework
 {
     public static class LocationExtension
     {
-        public static string[] FarmArea { get; } = new string[] {
+        private static string[] FarmArea { get; } = new string[] {
             "Farm", "FarmHouse", "Cellar", "Greenhouse", "FarmCave", "Shed", "Big Shed",
-            "Coop", "Big Coop", "Deluxe Coop", "Barn", "Big Barn", "Deluxe Barn", "Slime Hutch"};
+            "Coop", "Big Coop", "Deluxe Coop", "Barn", "Big Barn", "Deluxe Barn", "Slime Hutch" };
+        private static string[] CustomArea { get; set; } = new string[] { "" };
+
+        public static void SetCustomArea(string[] area)
+        {
+            CustomArea = area;
+        }
+
+        public static IEnumerable<string> GetFarmAndCustomArea()
+        {
+            if (FarmArea != null && CustomArea != null)
+                return FarmArea.Concat(CustomArea);
+            else if (FarmArea != null)
+                return FarmArea;
+            else if (CustomArea != null)
+                return CustomArea;
+
+            return new string[] { "" };
+        }
 
         /// <summary>
         /// Get all game's locations

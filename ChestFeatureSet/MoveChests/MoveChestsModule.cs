@@ -153,7 +153,7 @@ namespace ChestFeatureSet.MoveChests
             var chest = e.Added.Select(p => p.Value).OfType<Chest>().LastOrDefault();
 
             // can not get bigChest name corrected. So skip now, later fix.
-            if (chest != null && (chest.Name == this.TempChestName || chest.ItemId == "BigChest"))
+            if (chest != null && (chest.Name == this.TempChestName || chest.ItemId == "BigChest" || chest.ItemId == "BigStoneChest"))
             {
                 chest = this.CopyChestData(chest, this.HeldChest);
 

@@ -84,7 +84,7 @@ namespace ChestFeatureSet.Framework
         /// Gets all the chests in the area with all locations
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<ChestLocationPair> GetAreaChests(string[] area)
+        public static IEnumerable<ChestLocationPair> GetAreaChests(IEnumerable<string> area)
             => GetAllChests().Where(chestPair => area.Contains(chestPair.Location.Name));
 
         /// <summary>

@@ -89,8 +89,8 @@ namespace ChestFeatureSet.StashToChests
             IEnumerable<Chest>? chests = null;
             if (this.Config.StashLocationSetting is "Anywhere")
                 chests = ChestExtension.GetAllChests().Select(chestPair => chestPair.Chest);
-            else if (this.Config.StashLocationSetting is "FarmArea" && LocationExtension.FarmArea.Contains(Game1.player.currentLocation.Name))
-                chests = ChestExtension.GetAreaChests(LocationExtension.FarmArea).Select(chestPair => chestPair.Chest);
+            else if (this.Config.StashLocationSetting is "FarmArea" && LocationExtension.GetFarmAndCustomArea().Contains(Game1.player.currentLocation.Name))
+                chests = ChestExtension.GetAreaChests(LocationExtension.GetFarmAndCustomArea()).Select(chestPair => chestPair.Chest);
             else
                 chests = Game1.player.GetNearbyChests(radius);
 
