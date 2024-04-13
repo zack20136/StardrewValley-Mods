@@ -120,6 +120,9 @@ namespace ChestFeatureSet.StashToChests
 
         private List<Item> GetTheChestStashList(Chest chest)
         {
+            if (!chest.Items.Any())
+                return new List<Item>();
+
             var f = this.GetAcceptingFunction();
 
             if (this.Config.LockItems && this.ModEntry.LockItems != null)
