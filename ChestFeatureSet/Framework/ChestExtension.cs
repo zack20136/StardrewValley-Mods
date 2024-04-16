@@ -15,7 +15,12 @@ namespace ChestFeatureSet.Framework
         /// <param name="chest"></param>
         /// <param name="i"></param>
         /// <returns></returns>
-        public static bool ContainsItem(this Chest chest, Item i) => chest.Items.Any(item =>item.ItemId == i.itemId && item.TypeDefinitionId == i.TypeDefinitionId);
+        public static bool ContainsItem(this Chest chest, Item i)
+        {
+            if (i == null)
+                return false;
+            return chest.Items.Any(item => item.ItemId == i.ItemId && item.TypeDefinitionId == i.TypeDefinitionId);
+        }
 
         /// <summary>
         /// Search ContainsItem By Existing Stacks
